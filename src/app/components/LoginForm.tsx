@@ -1,24 +1,54 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, FormControl, InputLabel, Link, OutlinedInput, SxProps } from "@mui/material";
+import styled from "@emotion/styled";
+import { Button, Card, CardActions, CardContent, CardHeader, Link, SxProps, TextField } from "@mui/material";
+import { useState } from "react";
+import { ErrorProps } from "./interfaces/ErrorProps";
+import { LoginProps } from "./interfaces/LoginProps";
 
 export const FormLogin: React.FC = () => {
+    const [login, setLogin] = useState<LoginProps>({
+        user: '',
+        pass: ''
+    });
+    const [errors, setErrors] = useState<ErrorProps[]>([]);
+
+    const handleChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target;
+        setLogin(prevData => ({...prevData, [name]: value}));
+        validation();
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        validation();
+    }
+
+    const validation = () => {
+        if(login.user === '') {
+            const error: ErrorProps = { name: 'user', error: 'El usuario no debería estar vacío' };
+            setErrors((prevErrors) => [...prevErrors, error]);
+        } else {
+            setErrors((prevErrors) => prevErrors.filter(error => error.name !== 'user'));
+        }
+        if(login.pass === '') {
+            const error: ErrorProps = { name: 'pass', error: 'La contraseña no debería estar vacía' };
+            setErrors((prevErrors) => [...prevErrors, error]);
+        } else {
+            setErrors((prevErrors) => prevErrors.filter(error => error.name !== 'pass'));
+        }
+    }
+
     return(
         <Card sx={ cardStyle }>
             <CardHeader sx={ headerStyle } title="Acceso"/>
             <CardContent>
-                <Box component="form" sx={ formStyle }>
-                    <FormControl sx={ inputTextStyle }>
-                        <InputLabel htmlFor="user">Usuario o correo electrónico</InputLabel>
-                        <OutlinedInput id="user" label="Usuario o correo electrónico"/>
-                    </FormControl>
-                    <FormControl sx={ inputTextStyle }>
-                        <InputLabel htmlFor="pass">Contraseña</InputLabel>
-                        <OutlinedInput id="pass" label="Contraseña"/>
-                    </FormControl>
+                <Form onSubmit={ handleSubmit }>
+                    <TextField id="user" name="user" label="Usuario o correo electrónico" variant="outlined" value={ login.user } onChange={ handleChangeField } helperText={ errors.find(error => error.name === 'user')?.error } error={ errors.some(error => error.name === 'user') }/>
+                    <TextField id="pass" name="pass" label="Contraseña" variant="outlined" value={ login.pass } onChange={ handleChangeField } helperText={ errors.find(error => error.name === 'pass')?.error } error={ errors.some(error => error.name === 'pass') }/>
                     <CardActions sx={ actionsStyle }>
                         <Link href="/resetPassword" underline="always">¿Has olvidado la contraseña?</Link>
-                        <Button variant="contained">Entrar</Button>
+                        <Button type="submit" variant="contained">Entrar</Button>
                     </CardActions>
-                </Box>
+                </Form>
             </CardContent>
         </Card>
     )
@@ -31,21 +61,16 @@ const cardStyle: SxProps = {
 }
 
 const headerStyle: SxProps = {
-    backgroundColor: 'cyan',
-    color: 'blue'
+    color: 'gray'
 }
 
-const formStyle: SxProps = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 2.5
-}
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`
 
 const actionsStyle: SxProps = {
     display: 'flex',
     justifyContent: 'space-between'
-}
-
-const inputTextStyle: SxProps = {
-    width: 2/2
 }
