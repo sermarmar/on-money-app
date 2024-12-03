@@ -1,10 +1,10 @@
-import { LoginPage } from './app/pages/LoginPage';
+import { RouterProvider } from './app/providers/routers/RouterProvider';
 
 function App() {
 
   return (
     <>
-      <LoginPage />
+      <RouterProvider />
     </>
   )
 }
