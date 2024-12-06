@@ -42,6 +42,6 @@ const styleDrawer = {
 
 const Main = styled.main`
     flex-grow: 1;
-    padding: 3px;
+    padding-inline: 25px;
     margin-left: 240px;
 `
