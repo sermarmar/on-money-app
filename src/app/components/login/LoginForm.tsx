@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Button, Card, CardActions, CardContent, CardHeader, Link, SxProps, TextField } from "@mui/material";
 import { useState } from "react";
-import { ErrorProps } from "./interfaces/ErrorProps";
+import { ErrorProps } from "../shared/ErrorProps";
 import { LoginProps } from "./interfaces/LoginProps";
 
 export const FormLogin: React.FC = () => {
