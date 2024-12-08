@@ -1,10 +1,11 @@
 export interface ProductProps {
     name: string
+    price: number
     description: string
-    type: string
-    subtype?: string
-    size?: string | number
+    type: number
+    subtype?: number
+    size?: number
     stock?: number
     url: string
-    status: string
+    status: number
 }
