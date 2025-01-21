@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Outlet, useNavigate } from "react-router";
-import { DASHBOARD_PAGE, MAILING_PAGE, PRODUCTS_PAGE, TRADING_PAGE } from "../../providers/routers/routers";
+import { CONFIGURATION_PAGE, DASHBOARD_PAGE, MAILING_PAGE, PRODUCTS_PAGE, TRADING_PAGE } from "../../providers/routers/routers";
 
 export const DahsboardPage: React.FC = () => {
     const navigate = useNavigate();
-    const listRoutes = [DASHBOARD_PAGE, PRODUCTS_PAGE, MAILING_PAGE, TRADING_PAGE];
+    const listRoutes = [DASHBOARD_PAGE, PRODUCTS_PAGE, MAILING_PAGE, TRADING_PAGE, CONFIGURATION_PAGE];
     
     const handleNavigate = (url: string) => {
         navigate(url);

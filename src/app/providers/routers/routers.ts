@@ -14,6 +14,10 @@ export const TRADING_PAGE = {
     name: 'Compraventa',
     url: '/trading'
 }
+export const CONFIGURATION_PAGE = {
+    name: 'Configuración',
+    url: '/configuration'
+}
 export const LOGIN_PAGE = {
     name: 'Login',
     url: '/login'

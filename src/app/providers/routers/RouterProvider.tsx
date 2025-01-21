@@ -5,6 +5,7 @@ import { DahsboardPage } from "../../pages/dashboard/DashboardPage";
 import { ProductsPage } from "../../pages/dashboard/ProductsPage";
 import { MailingPage } from "../../pages/dashboard/MailingPage";
 import { TradingPage } from "../../pages/dashboard/TradingPage";
+import { ConfigurationPage } from "../../pages/dashboard/ConfigurationPage";
 
 export const RouterProvider: React.FC = () => {
     return (
@@ -16,6 +17,8 @@ export const RouterProvider: React.FC = () => {
                     <Route path="/products" element={ <ProductsPage /> }/>
                     <Route path="/mailing" element={ <MailingPage /> }/>
                     <Route path="/trading" element={ <TradingPage /> }/>
+                    <Route path="/configuration" element={ <ConfigurationPage /> }/>
+                    <Route path="*" element={ <h1>Not Found</h1> }/>
                 </Route>
             </Routes>
         </BrowserRouter>
