@@ -1,10 +1,12 @@
-import React from 'react';
+import { Container } from '@mui/material';
+import { ConfigurationList } from '../../components/configuration/ConfigurationList';
 
 export const ConfigurationPage: React.FC = () => {
+    
+
     return (
-        <div>
-            <h1>Configuration Page</h1>
-            <p>Welcome to the configuration page!</p>
-        </div>
+        <Container maxWidth="xl" sx={{ mt: 7 }}>
+            <ConfigurationList />
+        </Container>
     );
 };
